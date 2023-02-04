@@ -15,9 +15,9 @@ public class WaterAreaGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 45; i++)
         {
-            randomY = Random.Range(0, -32);
+            randomY = Random.Range(0, -1000);
             randomX = Random.Range(-19.4f, 19.4f);
             Instantiate(waterArea, new Vector3(randomX, randomY, 0), Random.rotation);
         }
