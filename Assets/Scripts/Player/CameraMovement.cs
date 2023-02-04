@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 3;
+    [SerializeField] float speed = 4;
 
     // Start is called before the first frame update
     void Start()
