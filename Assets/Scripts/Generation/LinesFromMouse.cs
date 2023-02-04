@@ -11,7 +11,8 @@ public class LinesFromMouse : MonoBehaviour
     private Vector3 lineStart;
     // if the user has started makeing a line, set to true
     private bool startedMakingLine = false;
-    
+
+    // get the mouses position in world space, z is always 0
     private Vector3 GetMousePosition()
     {
         Vector3 pos = cam.ScreenToWorldPoint(Input.mousePosition);
