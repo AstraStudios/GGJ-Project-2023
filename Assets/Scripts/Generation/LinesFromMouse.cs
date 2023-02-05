@@ -59,6 +59,15 @@ public class LinesFromMouse : MonoBehaviour
         return closestPoint;
     }
 
+    private float GetDistance(Vector3 one, Vector3 two)
+    {
+        // find the distance
+        float x1 = one.x;
+        float y1 = one.y;
+        float x2 = two.x;
+        float y2 = two.y;
+        return Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
+    }
 
     private void Start()
     {
@@ -92,12 +101,8 @@ public class LinesFromMouse : MonoBehaviour
             // add the endpoint to the points list
             points.Add(drawLineScript.end);
 
-            // find the distance
-            float x1 = drawLineScript.start.x;
-            float y1 = drawLineScript.start.y;
-            float x2 = drawLineScript.end.x;
-            float y2 = drawLineScript.end.y;  
-            totalRootPerimeter += Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
+            // add the the total of the root
+            totalRootPerimeter += GetDistance(drawLineScript.start, drawLineScript.end);
 
             // create collision objects
             GameObject waterCollector = Instantiate(circleWaterCollider, drawLineScript.end, Quaternion.identity);
@@ -107,12 +112,18 @@ public class LinesFromMouse : MonoBehaviour
         // start making a line
         else if (Input.GetMouseButtonDown(0) && !startedMakingLine)
         {
+
+            // find where it will make the start
+            lineStart = FindNearestPoint(GetMousePosition(), points);
+
+            // if it is more then 2 away cancel
+            if (GetDistance(GetMousePosition(), lineStart) > 2)
+                return;
+
             // make the line object and get the script
             line = Instantiate(lineDrawer, new Vector3(0, 0, 0), Quaternion.identity);
             line.transform.parent = rootParent.transform;
 
-            // find where it will make the start
-            lineStart = FindNearestPoint(GetMousePosition(), points);
 
             // get the script and set the start
             drawLineScript = line.GetComponent<DrawLine>();
