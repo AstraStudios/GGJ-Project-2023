@@ -65,7 +65,7 @@ public class PointsManager : MonoBehaviour
     void SunlightCalc()
     {
         // Calculate the sunlight per second
-        ambientSunlight += 0.0015f * recusrionLevel * Time.deltaTime;
+        ambientSunlight += 0.0015f * 2 * Time.deltaTime;
         sunlightAmount += ambientSunlight;
         sunlightAmountText.text = Mathf.RoundToInt(sunlightAmount).ToString();
     }
@@ -113,16 +113,9 @@ public class PointsManager : MonoBehaviour
         }
         else
         {
-            PlaceText();
+            Debug.Log("Not enough money");
+            return;            
         }
-    }
-    IEnumerator PlaceText()
-    {
-        for (; ;)
-        {
-            notEnoughMoneyText.text = "You do not have enough money!";
-        }
-        yield return new WaitForSeconds(.5f);
     }
 
     public void PayForTree()
@@ -137,7 +130,14 @@ public class PointsManager : MonoBehaviour
                 priceSunlight += 60;
                 priceWater += 30;
                 break;
-
+            case 3:
+                priceSunlight += 120;
+                priceWater += 60;
+                break;
+            case 4:
+                priceSunlight += 240;
+                priceWater += 120;
+                break;
         }
     }
 }
