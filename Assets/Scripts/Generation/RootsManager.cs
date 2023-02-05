@@ -15,6 +15,8 @@ public class RootsManager : MonoBehaviour
     [SerializeField] float groundHeight;
     [SerializeField] Vector3 rootStartPoint;
     public float totalRootPerimeter = 0;
+    public float currentRootLength = 0;
+
     [SerializeField] GameObject circleWaterCollider;
     [SerializeField] GameObject waterColliderParent;
 
@@ -102,7 +104,8 @@ public class RootsManager : MonoBehaviour
             points.Add(drawLineScript.end);
 
             // add the the total of the root
-            totalRootPerimeter += GetDistance(drawLineScript.start, drawLineScript.end);
+            currentRootLength = GetDistance(drawLineScript.start, drawLineScript.end);
+            totalRootPerimeter += currentRootLength;
 
             // create collision objects
             GameObject waterCollector = Instantiate(circleWaterCollider, drawLineScript.end, Quaternion.identity);
@@ -134,7 +137,10 @@ public class RootsManager : MonoBehaviour
 
         // update the end of the line to be at the cursor
         if (startedMakingLine)
+        {
             drawLineScript.end = GetMousePosition();
+            currentRootLength = GetDistance(drawLineScript.start, drawLineScript.end);
+        }
         
     }
 }
