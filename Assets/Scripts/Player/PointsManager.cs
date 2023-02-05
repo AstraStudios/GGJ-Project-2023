@@ -6,8 +6,6 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
-    // money basics: sunlight: 10/5 :water
-
     [SerializeField] TMP_Text plantAmountText;
     [SerializeField] TMP_Text waterAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
@@ -98,7 +96,7 @@ public class PointsManager : MonoBehaviour
 
     public bool PayForTree(PlantLSystem tree)
     {
-        recusrionLevel = tree.currentRecusrionLevel + 1;
+        recusrionLevel = tree.currentRecusrionLevel;
         priceWater = 15 * recusrionLevel;
 
         if (waterAmount >= priceWater)
