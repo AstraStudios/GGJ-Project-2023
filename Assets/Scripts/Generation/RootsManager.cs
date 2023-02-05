@@ -113,7 +113,7 @@ public class RootsManager : MonoBehaviour
             GameObject waterCollector = Instantiate(circleWaterCollider, drawLineScript.end, Quaternion.identity);
             waterCollector.transform.parent = waterColliderParent.transform;
 
-            
+            pointsManagerScript.PayForLine();
         }
 
         // start making a line

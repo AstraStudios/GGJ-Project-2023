@@ -13,6 +13,7 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text waterAmountText;
     [SerializeField] TMP_Text sunlightSpendAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
+    [SerializeField] TMP_Text buyingPanelSpendAmountText;
     [SerializeField] GameObject buyPanel;
 
     float ambientWater; // add constantly
@@ -24,6 +25,7 @@ public class PointsManager : MonoBehaviour
     public float sunlightAmount;
 
     public float totalMoney;
+    public bool didBuy;
 
     GameObject[] numOfPlantsInScene;
     RootsManager rootsManagerScript;
@@ -45,7 +47,6 @@ public class PointsManager : MonoBehaviour
         SunlightCalc();
         WaterCalc();
         LengthCalc();
-        PayForLine();
     }
 
     void AmountOfPlants()
@@ -59,16 +60,16 @@ public class PointsManager : MonoBehaviour
     void SunlightCalc()
     {
         // Calculate the sunlight per second
-        ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
-        sunlightAmount = ambientSunlight;
+        ambientSunlight += 0.0015f * plantAmount * Time.deltaTime;
+        sunlightAmount += ambientSunlight;
         sunlightAmountText.text = Mathf.RoundToInt(sunlightAmount).ToString();
     }
 
     void WaterCalc()
     {
         // calculate water from holes and ambient
-        ambientWater += .5f * Time.deltaTime;
-        waterAmount = ambientWater; // add water from holes later
+        ambientWater += .0005f * Time.deltaTime;
+        waterAmount += ambientWater; // add water from holes later
         waterAmountText.text = Mathf.RoundToInt(waterAmount).ToString();
     }
 
@@ -83,7 +84,9 @@ public class PointsManager : MonoBehaviour
 
     public void PayForLine()
     {
-        buyPanel.SetActive(true);
-
+        Debug.Log("Hello?");
+        Debug.Log("Transcation starting");
+        sunlightAmount -= sunlightSpendAmount;
+        waterAmount -= waterSpendAmount;
     }
 }
