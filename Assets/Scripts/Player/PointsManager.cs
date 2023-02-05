@@ -9,15 +9,11 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text sunlightAmountText;
     [SerializeField] TMP_Text waterAmountText;
 
-    // For water detection(please lord work)
-    List<GameObject> water = new List<GameObject>();
-    Collider2D waterCol2d;
-
     float totalRootDistance; // for the ambient soaking
     float ambientWater; // add constantly
     float ambientSunlight; // add constantly
     int plantAmount;
-    int waterFromHoles;
+    public int waterFromHoles;
     public float waterAmount;
 
     public float totalMoney;
@@ -28,10 +24,6 @@ public class PointsManager : MonoBehaviour
     void Start()
     {
         waterFromHoles = 0;
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Water").Length; i++)
-        {
-            water.Add(GameObject.FindGameObjectsWithTag("Water")[i]);
-        }
     }
 
     // Update is called once per frame
@@ -44,6 +36,7 @@ public class PointsManager : MonoBehaviour
 
     void AmountOfPlants()
     {
+        // more plants = more sunlight
         numOfPlantsInScene = GameObject.FindGameObjectsWithTag("Plant");
         plantAmount = numOfPlantsInScene.Length;
         plantAmountText.text = plantAmount.ToString();
@@ -51,12 +44,14 @@ public class PointsManager : MonoBehaviour
 
     void SunlightCalc()
     {
+        // Calculate the sunlight per second
         ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
         sunlightAmountText.text = Mathf.RoundToInt(ambientSunlight).ToString();
     }
 
     void WaterCalc()
     {
+        // calculate water from holes and ambient
         ambientWater += .5f * Time.deltaTime;
         waterAmount = ambientWater + waterFromHoles;
         waterAmountText.text = Mathf.RoundToInt(waterAmount).ToString();
