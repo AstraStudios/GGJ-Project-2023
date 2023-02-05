@@ -8,7 +8,7 @@ public class PlantLSystem : MonoBehaviour
     private DrawLine drawLineScript;
 
     // the starting word
-    public string word = "F";
+    public string startWord = "F";
 
     // how many times it should run
     public int recursionLevel;
@@ -22,7 +22,9 @@ public class PlantLSystem : MonoBehaviour
     public float distanceChange = 2f;
     public float startAngle = 90f;
 
-    private string derive(string word, Dictionary<string, string> productions)
+    
+
+    private string derive(string word, Dictionary<string, string> productions, int recursionLevel)
     {
         // the word generated after each derivation. set it to word incase there are no runs
         string new_word = word;
@@ -65,14 +67,12 @@ public class PlantLSystem : MonoBehaviour
     }
 
     // this will simulate a basic turtle program creating lines
-    private void DrawString(string startWord, float angleChange, float distanceChange, float startx, float starty, float startangle)
+    private void DrawString(string word, float angleChange, float distanceChange, float startx, float starty, float startangle)
     {
         // state of the turtle (x, y, angle)
         Vector3 state = new Vector3(startx, starty, startangle);
 
         List<Vector3> savedStatesStack = new List<Vector3>();
-
-        Debug.Log(word);
 
         // move the turtle forwards and draw a line
         void TurtleForward(float distance)
@@ -115,11 +115,17 @@ public class PlantLSystem : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Generate(int recursionLevel)
     {
         productions.Add("F", FReplacement);
+        string word = startWord;
 
-        word = derive(word, productions);
+        word = derive(word, productions, recursionLevel);
         DrawString(word, angleChange, distanceChange, gameObject.transform.position.x, gameObject.transform.position.y, startAngle);
+    }
+
+    private void Start()
+    {
+        Generate(recursionLevel);
     }
 }

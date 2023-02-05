@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class LinesFromMouse : MonoBehaviour
 {
-    public GameObject lineDrawer;
     private DrawLine drawLineScript;
     private Camera cam;
+
+    [SerializeField] GameObject lineDrawer;
     [SerializeField] GameObject rootParent;
+    [SerializeField] GameObject Plant1;
+
+    [SerializeField] float groundHeight;
+    [SerializeField] Vector3 rootStartPoint;
+    public float totalRootPerimeter = 0;
 
     private Vector3 lineStart;
 
-    public float totalRootPerimeter = 0;
+
 
     // the points where you will be able to draw a line from. first one is the base of the plant
     List<Vector3> points = new List<Vector3>();
-    [SerializeField] Vector3 rootStartPoint;
+
 
     // if the user has started makeing a line, set to true
     private bool startedMakingLine = false;
@@ -64,6 +70,14 @@ public class LinesFromMouse : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && startedMakingLine)
         {
             startedMakingLine = false;
+
+            // if it is above the ground, generate a new tree and stop the line
+            if (drawLineScript.end.y > groundHeight)
+            {
+                Vector3 branchPoint = new Vector3(drawLineScript.end.x, groundHeight, 0);
+                Object plant = Instantiate(Plant1, branchPoint, Quaternion.identity);
+                drawLineScript.end = branchPoint;
+            }
 
             // add the endpoint to the points list
             points.Add(drawLineScript.end);
