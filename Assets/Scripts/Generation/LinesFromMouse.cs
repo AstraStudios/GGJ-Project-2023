@@ -90,7 +90,9 @@ public class LinesFromMouse : MonoBehaviour
             float x2 = drawLineScript.end.x;
             float y2 = drawLineScript.end.y;  
             totalRootPerimeter += Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
-            GameObject waterCollector = Instantiate(circleWaterCollider, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+
+            // create collision objects
+            GameObject waterCollector = Instantiate(circleWaterCollider, drawLineScript.end, Quaternion.identity);
             waterCollector.transform.parent = waterColliderParent.transform;
         }
 
