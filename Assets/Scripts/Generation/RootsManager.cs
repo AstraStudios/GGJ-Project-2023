@@ -122,6 +122,9 @@ public class RootsManager : MonoBehaviour
             // if it is more then 2 away cancel
             if (GetDistance(GetMousePosition(), lineStart) > 2)
                 return;
+            // cant start roots above ground
+            if (lineStart.y > groundHeight)
+                return;
 
             // make the line object and get the script
             line = Instantiate(lineDrawer, new Vector3(0, 0, 0), Quaternion.identity);
