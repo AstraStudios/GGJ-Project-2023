@@ -5,6 +5,8 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
+    // money basics: sunlight: 10/1 :water
+
     [SerializeField] TMP_Text plantAmountText;
     [SerializeField] TMP_Text sunlightAmountText;
     [SerializeField] TMP_Text waterAmountText;
@@ -13,7 +15,6 @@ public class PointsManager : MonoBehaviour
     float ambientWater; // add constantly
     float ambientSunlight; // add constantly
     int plantAmount;
-    public int waterFromHoles;
     public float waterAmount;
 
     public float totalMoney;
@@ -23,7 +24,7 @@ public class PointsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waterFromHoles = 0;
+        
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class PointsManager : MonoBehaviour
     {
         // calculate water from holes and ambient
         ambientWater += .5f * Time.deltaTime;
-        waterAmount = ambientWater + waterFromHoles;
+        waterAmount = ambientWater; // add water from holes later
         waterAmountText.text = Mathf.RoundToInt(waterAmount).ToString();
     }
 }
