@@ -23,15 +23,15 @@ public class WaterCheckRoot : MonoBehaviour
         
     }
 
-    //public void OnTriggerEnter2D(Collider2D collision)
-    //{
-        //waterAreaLocal += 1;
-        //waterAreaAmount.Add(waterAreaLocal);
-        //Debug.Log("There is a root in me!");
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        waterAreaLocal += 1;
+        waterAreaAmount.Add(waterAreaLocal);
+        Debug.Log("There is a root in me!");
+    }
 
-    //public void CalcWaterFromAreas()
-    //{
-        //pointsManager.waterAmount += waterAreaAmount.Count;
-    //}
+    public void CalcWaterFromAreas()
+    {
+        pointsManager.waterAmount += waterAreaAmount.Count;
+    }
 }

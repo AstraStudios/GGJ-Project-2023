@@ -14,6 +14,8 @@ public class LinesFromMouse : MonoBehaviour
     [SerializeField] float groundHeight;
     [SerializeField] Vector3 rootStartPoint;
     public float totalRootPerimeter = 0;
+    [SerializeField] GameObject circleWaterCollider;
+    [SerializeField] GameObject waterColliderParent;
 
     private Vector3 lineStart;
 
@@ -88,6 +90,8 @@ public class LinesFromMouse : MonoBehaviour
             float x2 = drawLineScript.end.x;
             float y2 = drawLineScript.end.y;  
             totalRootPerimeter += Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
+            GameObject waterCollector = Instantiate(circleWaterCollider, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0), Quaternion.identity);
+            waterCollector.transform.parent = waterColliderParent.transform;
         }
 
         // start making a line
@@ -110,7 +114,6 @@ public class LinesFromMouse : MonoBehaviour
         // update the end of the line to be at the cursor
         if (startedMakingLine)
             drawLineScript.end = GetMousePosition();
-
         
     }
 }
