@@ -90,7 +90,7 @@ public class RootsManager : MonoBehaviour
         }
 
         // stop making the line, it will keep its current state
-        if (Input.GetMouseButtonDown(0) && startedMakingLine && pointsManagerScript.sunlightAmount > pointsManagerScript.sunlightSpendAmount && pointsManagerScript.waterAmount > pointsManagerScript.waterSpendAmount)
+        if (Input.GetMouseButtonDown(0) && startedMakingLine && pointsManagerScript.waterAmount > pointsManagerScript.waterSpendAmount)
         {
             startedMakingLine = false;
 

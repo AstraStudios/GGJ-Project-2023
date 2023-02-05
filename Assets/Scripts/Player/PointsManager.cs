@@ -42,7 +42,6 @@ public class PointsManager : MonoBehaviour
     void Update()
     {   
         AmountOfPlants();
-        SunlightCalc();
         WaterCalc();
         LengthCalc();
     }
@@ -103,7 +102,7 @@ public class PointsManager : MonoBehaviour
         recusrionLevel = tree.currentRecusrionLevel + 1;
         priceWater = 15 * recusrionLevel;
 
-        if (sunlightAmount >= priceSunlight && waterAmount >= priceWater)
+        if (waterAmount >= priceWater)
         {
             waterAmount -= priceWater;
             return true;
