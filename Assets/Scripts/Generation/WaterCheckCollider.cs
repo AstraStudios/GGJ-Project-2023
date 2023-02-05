@@ -13,7 +13,7 @@ public class WaterCheckCollider : MonoBehaviour
     void Start()
     {
         pointsManagerScript = managerPrefab.GetComponent<PointsManager>();
-        Collider2D[] waterCol2D = Physics2D.OverlapCircleAll(transform.position, 3f, -1, -Mathf.Infinity, Mathf.Infinity);
+        Collider2D[] waterCol2D = Physics2D.OverlapCircleAll(transform.position, 3f, -1, -Mathf.Infinity, Mathf.Infinity); // should make a collider2d array but not sure about this
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class WaterCheckCollider : MonoBehaviour
         if (waterCol2D != null)
         {
             Debug.Log("Collecting water from a hole!");
-
+            // not sure if this is right way to do it but this just says if there is something in there
         }
     }
 }
