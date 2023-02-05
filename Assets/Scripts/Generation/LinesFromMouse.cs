@@ -7,6 +7,7 @@ public class LinesFromMouse : MonoBehaviour
     public GameObject lineDrawer;
     private DrawLine drawLineScript;
     private Camera cam;
+    [SerializeField] GameObject rootParent;
 
     private Vector3 lineStart;
 
@@ -71,6 +72,7 @@ public class LinesFromMouse : MonoBehaviour
         {
             // make the line object and get the script
             GameObject line = Instantiate(lineDrawer, new Vector3(0, 0, 0), Quaternion.identity);
+            line.transform.parent = rootParent.transform;
 
             // find where it will make the start
             lineStart = FindNearestPoint(GetMousePosition(), points);

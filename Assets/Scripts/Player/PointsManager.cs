@@ -13,8 +13,8 @@ public class PointsManager : MonoBehaviour
 
     float totalRootDistance; // for the ambient soaking
     float ambientWater; // add constantly
+    float ambientSunlight; // add constantly
     int plantAmount;
-    public float sunlightAmount;  // add constantly
     public float waterAmount;
 
     public float totalPlantHealth;
@@ -31,6 +31,7 @@ public class PointsManager : MonoBehaviour
     void Update()
     {
         AmountOfPlants();
+        SunlightCalc();
     }
 
     void CheckRootLengthAndAddAmbient()
@@ -47,6 +48,7 @@ public class PointsManager : MonoBehaviour
 
     void SunlightCalc()
     {
-
+        ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
+        sunlightAmountText.text = ambientSunlight.ToString();
     }
 }
