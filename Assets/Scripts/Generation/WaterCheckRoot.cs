@@ -23,7 +23,7 @@ public class WaterCheckRoot : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         waterAreaLocal += 1;
         waterAreaAmount.Add(waterAreaLocal);
