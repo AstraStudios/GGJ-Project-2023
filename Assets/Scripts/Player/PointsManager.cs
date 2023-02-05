@@ -9,7 +9,8 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text sunlightAmountText;
     [SerializeField] TMP_Text waterAmountText;
 
-    [SerializeField] WaterCheckRoot waterCheckingScript;
+    [SerializeField] GameObject waterCheckingScriptObject;
+    WaterCheckRoot waterCheckRoot;
 
     float totalRootDistance; // for the ambient soaking
     float ambientWater; // add constantly
@@ -32,6 +33,7 @@ public class PointsManager : MonoBehaviour
     {
         AmountOfPlants();
         SunlightCalc();
+        WaterCalc();
     }
 
     void CheckRootLengthAndAddAmbient()
@@ -50,5 +52,12 @@ public class PointsManager : MonoBehaviour
     {
         ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
         sunlightAmountText.text = ambientSunlight.ToString();
+    }
+
+    void WaterCalc()
+    {
+        ambientWater += .5f * Time.deltaTime;
+        waterAmount += ambientWater;
+        waterAmountText.text = waterAmount.ToString();
     }
 }
