@@ -135,6 +135,7 @@ public class PlantLSystem : MonoBehaviour
     // generate a plant
     public void Generate(int recursionLevel)
     {
+        print(recursionLevel);
         currentRecusrionLevel = recursionLevel;
 
         // generate the turtle commands

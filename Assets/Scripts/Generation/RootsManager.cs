@@ -10,7 +10,8 @@ public class RootsManager : MonoBehaviour
 
     [SerializeField] GameObject lineDrawer;
     [SerializeField] GameObject rootParent;
-    [SerializeField] GameObject Plant1;
+    [SerializeField] GameObject Plant;
+    private PlantLSystem tree;
 
     [SerializeField] float groundHeight;
     [SerializeField] Vector3 rootStartPoint;
@@ -77,11 +78,27 @@ public class RootsManager : MonoBehaviour
         cam = Camera.main;
         points.Add(rootStartPoint);
         pointsManagerScript = gameObject.GetComponent<PointsManager>();
+        tree = Plant.GetComponent<PlantLSystem>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        int treeRecursianLevel = 1;
+        if (totalRootPerimeter > 25)
+            treeRecursianLevel = 2;
+        if (totalRootPerimeter > 50)
+            treeRecursianLevel = 3;
+        if (totalRootPerimeter > 100)
+            treeRecursianLevel = 4;
+        if (totalRootPerimeter > 175)
+            treeRecursianLevel = 5;
+        if (totalRootPerimeter > 400)
+            treeRecursianLevel = 6;
+
+        if (treeRecursianLevel != tree.currentRecusrionLevel)
+            tree.Generate(treeRecursianLevel);
+
         // cancel makeing the line on right click
         if (Input.GetMouseButtonDown(1) && startedMakingLine)
         {
@@ -98,7 +115,6 @@ public class RootsManager : MonoBehaviour
             if (drawLineScript.end.y > groundHeight)
             {
                 Vector3 branchPoint = new Vector3(drawLineScript.end.x, groundHeight, 0);
-                Object plant = Instantiate(Plant1, branchPoint, Quaternion.identity);
                 drawLineScript.end = branchPoint;
             }
 
