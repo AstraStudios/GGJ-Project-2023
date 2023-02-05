@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinesFromMouse : MonoBehaviour
+public class RootsManager : MonoBehaviour
 {
     private DrawLine drawLineScript;
     private Camera cam;
