@@ -83,8 +83,6 @@ public class PointsManager : MonoBehaviour
                 activeHoles += 1;
         }
 
-        Debug.Log(activeHoles);
-
 
         // calculate water from holes and ambient
         ambientWater += .5f * rootsManagerScript.totalRootPerimeter * Time.deltaTime;
@@ -118,15 +116,23 @@ public class PointsManager : MonoBehaviour
         }
     }
 
-    public void PayForTree()
+    public bool PayForTree(PlantLSystem tree)
     {
-        recusrionLevel = numOfPlantsInScene.Length;
-        priceSunlight = 60 * recusrionLevel;
+        recusrionLevel = tree.currentRecusrionLevel + 1;
         priceWater = 15 * recusrionLevel;
-        if (sunlightAmount > priceSunlight && waterAmount > priceWater)
+
+        if (sunlightAmount >= priceSunlight && waterAmount >= priceWater)
         {
-            sunlightAmount -= priceSunlight;
             waterAmount -= priceWater;
+            return true;
         }
+
+        return false;
+    }   
+
+    public void ShowTreePrice(PlantLSystem tree)
+    {
+        recusrionLevel = tree.currentRecusrionLevel + 1;
+        priceWater = 15 * recusrionLevel;
     }
 }

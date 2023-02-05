@@ -39,9 +39,15 @@ public class PlantGrowOnClick : MonoBehaviour
     // make the tree bigger
     private void OnMouseDown()
     {
-        tree.Generate(tree.currentRecusrionLevel + 1);
-        pointManager.PayForTree();
+        if (pointManager.PayForTree(tree))
+        {
+            tree.Generate(tree.currentRecusrionLevel + 1);
+            ResizeColider();
+        }
+    }
 
-        ResizeColider();
+    private void OnMouseOver()
+    {
+        pointManager.ShowTreePrice(tree);
     }
 }
