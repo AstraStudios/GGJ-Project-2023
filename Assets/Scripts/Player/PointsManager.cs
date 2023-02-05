@@ -10,10 +10,14 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text plantAmountText;
     [SerializeField] TMP_Text sunlightAmountText;
     [SerializeField] TMP_Text waterAmountText;
+    [SerializeField] TMP_Text sunlightSpendAmountText;
+    [SerializeField] TMP_Text waterSpendAmountText;
 
     float totalRootDistance; // for the ambient soaking
     float ambientWater; // add constantly
     float ambientSunlight; // add constantly
+    int sunlightSpendAmount;
+    int waterSpendAmount;
     int plantAmount;
     public float waterAmount;
 
