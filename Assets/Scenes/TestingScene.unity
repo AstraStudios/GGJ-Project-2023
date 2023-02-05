@@ -621,6 +621,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632109834}
   m_CullTransparentMesh: 1
+--- !u!1 &854700243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5567673981763907827, guid: df2d496b3a3e84d79ba790ac124f448a, type: 3}
+  m_PrefabInstance: {fileID: 1968004964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1105765793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1460,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4232342111133498518, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
+      propertyPath: Plant
+      value: 
+      objectReference: {fileID: 854700243}
     - target: {fileID: 4232342111133498518, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
       propertyPath: Plant1
       value: 
