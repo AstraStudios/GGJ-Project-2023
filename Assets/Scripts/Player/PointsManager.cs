@@ -59,7 +59,7 @@ public class PointsManager : MonoBehaviour
 
         // calculate water from holes and ambient
         ambientWater = .001f + .03f * rootsManagerScript.totalRootPerimeter * Time.deltaTime;
-        waterAmount += activeHoles * .01f;
+        waterAmount += activeHoles * .003f;
         waterAmount += ambientWater; // add water from holes later
         waterAmountText.text = Mathf.FloorToInt(waterAmount).ToString();
     }
