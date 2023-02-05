@@ -14,7 +14,6 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text notEnoughMoneyText;
 
     float ambientWater; // add constantly
-    float ambientSunlight; // add constantly
     public int waterSpendAmount;
     int plantAmount;
     public int recusrionLevel;
