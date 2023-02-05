@@ -12,6 +12,7 @@ public class PlantLSystem : MonoBehaviour
 
     // how many times it should run
     public int recursionLevel;
+    public int currentRecusrionLevel;
 
     // because there is no serilized feild for dictionary, just define replacements for F
     public Dictionary<string, string> productions = new Dictionary<string, string>();
@@ -22,7 +23,12 @@ public class PlantLSystem : MonoBehaviour
     public float distanceChange = 2f;
     public float startAngle = 90f;
 
-    
+    // size of tree
+    public float minY;
+    public float maxY;
+    public float minX;
+    public float maxX;
+
 
     private string derive(string word, Dictionary<string, string> productions, int recursionLevel)
     {
@@ -95,6 +101,10 @@ public class PlantLSystem : MonoBehaviour
             state.z += angle;
         }
 
+        // for each letter run a command:
+        // F   - forward and draw
+        // -/+ - turn left/right
+        // [/] - save/load state to/from stack
         for (int letterIndex = 0; letterIndex < word.Length; letterIndex++)
         {
             string letter = word[letterIndex].ToString();
@@ -108,24 +118,37 @@ public class PlantLSystem : MonoBehaviour
                 savedStatesStack.Add(state);
             if (letter == "]")
             {
+                // get the last item in the stack, set the state to it and pop it
                 int lastIndex = savedStatesStack.Count - 1;
                 state = savedStatesStack[lastIndex];
                 savedStatesStack.RemoveAt(lastIndex);
             }
+
+            // redifine the size
+            if (state.x > maxX) maxX = state.x;
+            if (state.y > maxY) maxY = state.y;
+            if (state.x < minX) minX = state.x;
+            if (state.y < minY) minX = state.y;
         }
     }
 
+    // generate a plant
     public void Generate(int recursionLevel)
     {
-        productions.Add("F", FReplacement);
-        string word = startWord;
+        currentRecusrionLevel = recursionLevel;
 
-        word = derive(word, productions, recursionLevel);
+        // generate the turtle commands
+        string word = derive(startWord, productions, recursionLevel);
+
+        // draw the tree at the position of the object
         DrawString(word, angleChange, distanceChange, gameObject.transform.position.x, gameObject.transform.position.y, startAngle);
     }
 
+    // setup productions and make the tree
     private void Start()
     {
+        productions.Add("F", FReplacement);
+
         Generate(recursionLevel);
     }
 }
