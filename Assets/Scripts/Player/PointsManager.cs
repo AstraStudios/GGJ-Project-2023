@@ -21,8 +21,6 @@ public class PointsManager : MonoBehaviour
     public float totalMoney;
 
     GameObject[] numOfPlantsInScene;
-    [SerializeField] GameObject growOnClickSystemObject;
-    PlantGrowOnClick plantGrowOnClickScript;
     RootsManager rootsManagerScript;
 
     // Start is called before the first frame update
@@ -32,7 +30,6 @@ public class PointsManager : MonoBehaviour
         waterSpendAmount = 0;
         waterAmount = 0;
         ambientWater = 10;
-        plantGrowOnClickScript = growOnClickSystemObject.GetComponent<PlantGrowOnClick>();
     }
 
     // Update is called once per frame
