@@ -6,6 +6,7 @@ public class LinesFromMouse : MonoBehaviour
 {
     private DrawLine drawLineScript;
     private Camera cam;
+    private GameObject line;
 
     [SerializeField] GameObject lineDrawer;
     [SerializeField] GameObject rootParent;
@@ -68,6 +69,13 @@ public class LinesFromMouse : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // cancel makeing the line on right click
+        if (Input.GetMouseButtonDown(1) && startedMakingLine)
+        {
+            startedMakingLine = false;
+            Destroy(line);
+        }
+
         // stop making the line, it will keep its current state
         if (Input.GetMouseButtonDown(0) && startedMakingLine)
         {
@@ -100,7 +108,7 @@ public class LinesFromMouse : MonoBehaviour
         else if (Input.GetMouseButtonDown(0) && !startedMakingLine)
         {
             // make the line object and get the script
-            GameObject line = Instantiate(lineDrawer, new Vector3(0, 0, 0), Quaternion.identity);
+            line = Instantiate(lineDrawer, new Vector3(0, 0, 0), Quaternion.identity);
             line.transform.parent = rootParent.transform;
 
             // find where it will make the start
