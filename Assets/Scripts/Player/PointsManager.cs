@@ -51,13 +51,12 @@ public class PointsManager : MonoBehaviour
     void SunlightCalc()
     {
         ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
-        sunlightAmountText.text = ambientSunlight.ToString();
+        sunlightAmountText.text = Mathf.RoundToInt(ambientSunlight).ToString();
     }
 
     void WaterCalc()
     {
         ambientWater += .5f * Time.deltaTime;
-        waterAmount += ambientWater;
-        waterAmountText.text = waterAmount.ToString();
+        waterAmountText.text = Mathf.RoundToInt(ambientWater).ToString();
     }
 }

@@ -17,7 +17,7 @@ public class WaterAreaGeneration : MonoBehaviour
         randomSpawnAmount = Random.Range(50, 125);
         for (int i = 0; i < randomSpawnAmount; i++)
         {
-            randomY = Random.Range(0, -1000);
+            randomY = Random.Range(-10, -1000);
             randomX = Random.Range(-19.4f, 19.4f);
             GameObject water = Instantiate(waterArea, new Vector3(randomX, randomY, 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
             water.transform.parent = waterParent.transform;
