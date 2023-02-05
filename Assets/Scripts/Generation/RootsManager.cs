@@ -19,6 +19,7 @@ public class RootsManager : MonoBehaviour
 
     [SerializeField] GameObject circleWaterCollider;
     [SerializeField] GameObject waterColliderParent;
+    PointsManager pointsManagerScript;
 
     private Vector3 lineStart;
 
@@ -75,6 +76,7 @@ public class RootsManager : MonoBehaviour
     {
         cam = Camera.main;
         points.Add(rootStartPoint);
+        pointsManagerScript = gameObject.GetComponent<PointsManager>();
     }
 
     // Update is called once per frame
@@ -110,6 +112,8 @@ public class RootsManager : MonoBehaviour
             // create collision objects
             GameObject waterCollector = Instantiate(circleWaterCollider, drawLineScript.end, Quaternion.identity);
             waterCollector.transform.parent = waterColliderParent.transform;
+
+            
         }
 
         // start making a line

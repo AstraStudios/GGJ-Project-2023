@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PointsManager : MonoBehaviour
@@ -12,14 +13,15 @@ public class PointsManager : MonoBehaviour
     [SerializeField] TMP_Text waterAmountText;
     [SerializeField] TMP_Text sunlightSpendAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
+    [SerializeField] GameObject buyPanel;
 
     float ambientWater; // add constantly
     float ambientSunlight; // add constantly
-    int sunlightSpendAmount;
-    int waterSpendAmount;
+    public int sunlightSpendAmount;
+    public int waterSpendAmount;
     int plantAmount;
-    float waterAmount;
-
+    public float waterAmount;
+    public float sunlightAmount;
 
     public float totalMoney;
 
@@ -32,6 +34,8 @@ public class PointsManager : MonoBehaviour
         rootsManagerScript = gameObject.GetComponent<RootsManager>();
         sunlightSpendAmount = 0;
         waterSpendAmount = 0;
+        waterAmount = 0;
+        sunlightAmount = 0;
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class PointsManager : MonoBehaviour
         SunlightCalc();
         WaterCalc();
         LengthCalc();
+        PayForLine();
     }
 
     void AmountOfPlants()
@@ -55,24 +60,30 @@ public class PointsManager : MonoBehaviour
     {
         // Calculate the sunlight per second
         ambientSunlight += 1.5f * plantAmount * Time.deltaTime;
-        sunlightAmountText.text = Mathf.RoundToInt(ambientSunlight).ToString();
+        sunlightAmount = ambientSunlight;
+        sunlightAmountText.text = Mathf.RoundToInt(sunlightAmount).ToString();
     }
 
     void WaterCalc()
     {
         // calculate water from holes and ambient
         ambientWater += .5f * Time.deltaTime;
-        waterAmount = ambientWater - waterSpendAmount; // add water from holes later
+        waterAmount = ambientWater; // add water from holes later
         waterAmountText.text = Mathf.RoundToInt(waterAmount).ToString();
     }
 
     void LengthCalc()
     {
         // 1 sunlight every meter
-        Debug.Log(rootsManagerScript.currentRootLength);
         sunlightSpendAmount = Mathf.RoundToInt(rootsManagerScript.currentRootLength / 2);
         waterSpendAmount = sunlightSpendAmount / 2;
-        waterAmountText.text = Mathf.RoundToInt(waterSpendAmount).ToString();
+        waterSpendAmountText.text = Mathf.RoundToInt(waterSpendAmount).ToString();
         sunlightSpendAmountText.text = Mathf.RoundToInt(sunlightSpendAmount).ToString();
+    }
+
+    public void PayForLine()
+    {
+        buyPanel.SetActive(true);
+
     }
 }
