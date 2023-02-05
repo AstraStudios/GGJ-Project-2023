@@ -9,21 +9,16 @@ public class PointsManager : MonoBehaviour
     // money basics: sunlight: 10/5 :water
 
     [SerializeField] TMP_Text plantAmountText;
-    [SerializeField] TMP_Text sunlightAmountText;
     [SerializeField] TMP_Text waterAmountText;
-    [SerializeField] TMP_Text sunlightSpendAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
     [SerializeField] TMP_Text notEnoughMoneyText;
 
     float ambientWater; // add constantly
     float ambientSunlight; // add constantly
-    public int sunlightSpendAmount;
     public int waterSpendAmount;
     int plantAmount;
     public int recusrionLevel;
     public float waterAmount;
-    public float sunlightAmount;
-    public int priceSunlight;
     public int priceWater;
 
     public float totalMoney;
@@ -37,10 +32,8 @@ public class PointsManager : MonoBehaviour
     void Start()
     {
         rootsManagerScript = gameObject.GetComponent<RootsManager>();
-        sunlightSpendAmount = 0;
         waterSpendAmount = 0;
         waterAmount = 0;
-        sunlightAmount = 0;
         ambientWater = 10;
         plantGrowOnClickScript = growOnClickSystemObject.GetComponent<PlantGrowOnClick>();
     }
@@ -60,14 +53,6 @@ public class PointsManager : MonoBehaviour
         numOfPlantsInScene = GameObject.FindGameObjectsWithTag("Plant");
         plantAmount = numOfPlantsInScene.Length;
         plantAmountText.text = plantAmount.ToString();
-    }
-
-    void SunlightCalc()
-    {
-        // Calculate the sunlight per second
-        ambientSunlight += 0.0015f * .5f * Time.deltaTime;
-        sunlightAmount += ambientSunlight;
-        sunlightAmountText.text = Mathf.RoundToInt(sunlightAmount).ToString();
     }
 
     void WaterCalc()
@@ -94,18 +79,15 @@ public class PointsManager : MonoBehaviour
     void LengthCalc()
     {
         // 1 sunlight every meter
-        sunlightSpendAmount = Mathf.RoundToInt(rootsManagerScript.currentRootLength * 2);
-        waterSpendAmount = sunlightSpendAmount / 2;
+        waterSpendAmount = Mathf.RoundToInt(rootsManagerScript.currentRootLength * 1.5f);
         waterSpendAmountText.text = Mathf.RoundToInt(waterSpendAmount).ToString();
-        sunlightSpendAmountText.text = Mathf.RoundToInt(sunlightSpendAmount).ToString();
     }
 
     public void PayForLine()
     {
         Debug.Log("Transcation starting");
-        if (sunlightAmount > sunlightSpendAmount && waterAmount > waterSpendAmount)
+        if (waterAmount > waterSpendAmount)
         {
-            sunlightAmount -= sunlightSpendAmount;
             waterAmount -= waterSpendAmount;
             Debug.Log("Transcation complete!");
         }
