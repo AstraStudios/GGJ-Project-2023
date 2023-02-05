@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6741044423955044385}
   - component: {fileID: 2273143720977718789}
   - component: {fileID: 2525112372505875272}
-  - component: {fileID: 4709013051701689026}
-  m_Layer: 0
+  - component: {fileID: 7108388300900599118}
+  m_Layer: 4
   m_Name: WaterArea
   m_TagString: Water
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &4709013051701689026
+--- !u!114 &7108388300900599118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5437783963917907060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60587a9c7522463aaca3809f544425c, type: 3}
+  m_Script: {fileID: 11500000, guid: 14bef3035e31f487281d1492daea28bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerPrefab: {fileID: 4232342111133498517, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
+  collecting: 0

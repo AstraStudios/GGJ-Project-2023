@@ -66,6 +66,20 @@ public class PointsManager : MonoBehaviour
 
     void WaterCalc()
     {
+        // get all of the scripts to see if they are collecting water
+        WaterCollectingCheck[] waterHoles = GameObject.Find("WaterParent").GetComponentsInChildren<WaterCollectingCheck>();
+        int activeHoles = 0;
+
+        // find the amount that are collecting water
+        for (int i = 0; i < waterHoles.Length; i++)
+        {
+            if (waterHoles[i].collecting)
+                activeHoles += 1;
+        }
+
+        Debug.Log(activeHoles);
+
+
         // calculate water from holes and ambient
         ambientWater += .5f * Time.deltaTime;
         waterAmount = ambientWater; // add water from holes later
