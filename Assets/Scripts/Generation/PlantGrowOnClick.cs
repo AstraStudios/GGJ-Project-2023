@@ -36,7 +36,8 @@ public class PlantGrowOnClick : MonoBehaviour
     // make the tree bigger
     private void OnMouseDown()
     {
-        Debug.Log("Clicked!");
         tree.Generate(tree.currentRecusrionLevel + 1);
+
+        ResizeColider();
     }
 }

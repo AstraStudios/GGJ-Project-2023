@@ -145,7 +145,7 @@ public class PlantLSystem : MonoBehaviour
     }
 
     // setup productions and make the tree
-    private void Start()
+    private void OnEnable()
     {
         productions.Add("F", FReplacement);
 
