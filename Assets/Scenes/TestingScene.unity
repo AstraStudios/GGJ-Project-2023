@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 819604299}
   - component: {fileID: 819604298}
   - component: {fileID: 819604300}
+  - component: {fileID: 819604301}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -469,9 +470,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b2c877f37a14f0ea9557b0708d3c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterAmountText: {fileID: 0}
   waterArea: {fileID: 5437783963917907060, guid: ce2d04a184e974d0bb25b8809cd9c1dd, type: 3}
-  amountWithWat: 0
+--- !u!114 &819604301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819604297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c529095f1314948819c754e7b0a766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantAmountText: {fileID: 1741577754}
+  sunlightAmountText: {fileID: 1213822132}
+  waterAmountText: {fileID: 632109836}
+  waterCheckingScript: {fileID: 0}
+  sunlightAmount: 0
+  waterAmount: 0
+  totalPlantHealth: 0
 --- !u!1 &1105765793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,4 +1207,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447185e5d0aa94ff69567c612dc27652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3

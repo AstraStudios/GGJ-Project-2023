@@ -5,12 +5,9 @@ using TMPro;
 
 public class WaterAreaGeneration : MonoBehaviour
 {
-    [SerializeField] TMP_Text waterAmountText;
     [SerializeField] GameObject waterArea;
     float randomY;
     float randomX;
-
-    public int amountWithWat;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +16,7 @@ public class WaterAreaGeneration : MonoBehaviour
         {
             randomY = Random.Range(0, -1000);
             randomX = Random.Range(-19.4f, 19.4f);
-            Instantiate(waterArea, new Vector3(randomX, randomY, 0), Random.rotation);
+            Instantiate(waterArea, new Vector3(randomX, randomY, 0), Quaternion.Euler(0, 0, Random.Range(0, 360)));
         }
     }
 
@@ -27,10 +24,5 @@ public class WaterAreaGeneration : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void CheckWaterAmount()
-    {
-        amountWithWat = 15;
     }
 }
