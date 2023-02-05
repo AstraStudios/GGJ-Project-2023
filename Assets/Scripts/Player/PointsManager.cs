@@ -6,10 +6,8 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text plantAmountText;
     [SerializeField] TMP_Text waterAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
-    [SerializeField] TMP_Text notEnoughMoneyText;
 
     float ambientWater; // add constantly
     public int waterSpendAmount;
@@ -45,7 +43,6 @@ public class PointsManager : MonoBehaviour
         // more plants = more sunlight
         numOfPlantsInScene = GameObject.FindGameObjectsWithTag("Plant");
         plantAmount = numOfPlantsInScene.Length;
-        plantAmountText.text = plantAmount.ToString();
     }
 
     void WaterCalc()
