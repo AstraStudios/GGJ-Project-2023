@@ -6,13 +6,10 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text plantAmountText;
     [SerializeField] TMP_Text waterAmountText;
     [SerializeField] TMP_Text waterSpendAmountText;
-    [SerializeField] TMP_Text notEnoughMoneyText;
 
     float ambientWater; // add constantly
-    float ambientSunlight; // add constantly
     public int waterSpendAmount;
     int plantAmount;
     public int recusrionLevel;
@@ -22,8 +19,6 @@ public class PointsManager : MonoBehaviour
     public float totalMoney;
 
     GameObject[] numOfPlantsInScene;
-    [SerializeField] GameObject growOnClickSystemObject;
-    PlantGrowOnClick plantGrowOnClickScript;
     RootsManager rootsManagerScript;
 
     // Start is called before the first frame update
@@ -32,7 +27,6 @@ public class PointsManager : MonoBehaviour
         rootsManagerScript = gameObject.GetComponent<RootsManager>();
         waterSpendAmount = 0;
         waterAmount = 10;
-        plantGrowOnClickScript = growOnClickSystemObject.GetComponent<PlantGrowOnClick>();
     }
 
     // Update is called once per frame
@@ -48,7 +42,6 @@ public class PointsManager : MonoBehaviour
         // more plants = more sunlight
         numOfPlantsInScene = GameObject.FindGameObjectsWithTag("Plant");
         plantAmount = numOfPlantsInScene.Length;
-        plantAmountText.text = plantAmount.ToString();
     }
 
     void WaterCalc()

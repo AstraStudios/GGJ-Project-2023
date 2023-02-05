@@ -23,6 +23,12 @@ public class LoadIntoGame : MonoBehaviour
         Debug.Log("Trying to load scene ");
     }
 
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        Debug.Log("Starting tutorial");
+    }
+
     public void CloseGame()
     {
         Application.Quit();
