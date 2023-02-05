@@ -31,8 +31,7 @@ public class PointsManager : MonoBehaviour
     {
         rootsManagerScript = gameObject.GetComponent<RootsManager>();
         waterSpendAmount = 0;
-        waterAmount = 0;
-        ambientWater = 10;
+        waterAmount = 10;
         plantGrowOnClickScript = growOnClickSystemObject.GetComponent<PlantGrowOnClick>();
     }
 
@@ -65,12 +64,11 @@ public class PointsManager : MonoBehaviour
                 activeHoles += 1;
         }
 
-
         // calculate water from holes and ambient
-        ambientWater += .5f * rootsManagerScript.totalRootPerimeter * Time.deltaTime;
-        ambientWater = ambientWater / 2;
+        ambientWater = .001f + .03f * rootsManagerScript.totalRootPerimeter * Time.deltaTime;
+        waterAmount += activeHoles * .01f;
         waterAmount += ambientWater; // add water from holes later
-        waterAmountText.text = Mathf.RoundToInt(waterAmount).ToString();
+        waterAmountText.text = Mathf.FloorToInt(waterAmount).ToString();
     }
 
     void LengthCalc()
