@@ -20,7 +20,6 @@ public class PlantLSystem : MonoBehaviour
     // drawing instructions
     public float angleChange = 20f;
     public float distanceChange = 2f;
-    public Vector2 startPosition = new Vector2(0, 0);
     public float startAngle = 90f;
 
     private string derive(string word, Dictionary<string, string> productions)
@@ -61,6 +60,8 @@ public class PlantLSystem : MonoBehaviour
         drawLineScript = line.GetComponent<DrawLine>();
         drawLineScript.start = new Vector3(start.x, start.y, 0);
         drawLineScript.end = new Vector3(end.x, end.y, 0);
+
+        line.transform.parent = gameObject.transform;
     }
 
     // this will simulate a basic turtle program creating lines
@@ -119,6 +120,6 @@ public class PlantLSystem : MonoBehaviour
         productions.Add("F", FReplacement);
 
         word = derive(word, productions);
-        DrawString(word, angleChange, distanceChange, startPosition.x, startPosition.y, startAngle);
+        DrawString(word, angleChange, distanceChange, gameObject.transform.position.x, gameObject.transform.position.y, startAngle);
     }
 }
