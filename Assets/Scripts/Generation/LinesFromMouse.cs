@@ -11,6 +11,8 @@ public class LinesFromMouse : MonoBehaviour
 
     private Vector3 lineStart;
 
+    public float totalRootPerimeter = 0;
+
     // the points where you will be able to draw a line from. first one is the base of the plant
     List<Vector3> points = new List<Vector3>();
     [SerializeField] Vector3 rootStartPoint;
@@ -65,6 +67,13 @@ public class LinesFromMouse : MonoBehaviour
 
             // add the endpoint to the points list
             points.Add(drawLineScript.end);
+
+            // find the distance
+            float x1 = drawLineScript.start.x;
+            float y1 = drawLineScript.start.y;
+            float x2 = drawLineScript.end.x;
+            float y2 = drawLineScript.end.y;  
+            totalRootPerimeter += Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
         }
 
         // start making a line
