@@ -7,6 +7,8 @@ public class PlantGrowOnClick : MonoBehaviour
     // the script to generate plants
     PlantLSystem tree;
     BoxCollider2D boxCollider;
+    [SerializeField] GameObject manager;
+    PointsManager pointManager;
 
     private void ResizeColider()
     {
@@ -29,6 +31,7 @@ public class PlantGrowOnClick : MonoBehaviour
     {
         tree = gameObject.GetComponent<PlantLSystem>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        pointManager = manager.GetComponent<PointsManager>();
 
         ResizeColider();
     }
@@ -37,6 +40,7 @@ public class PlantGrowOnClick : MonoBehaviour
     private void OnMouseDown()
     {
         tree.Generate(tree.currentRecusrionLevel + 1);
+        pointManager.PayForTree();
 
         ResizeColider();
     }

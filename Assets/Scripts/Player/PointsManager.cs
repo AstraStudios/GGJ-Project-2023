@@ -20,7 +20,7 @@ public class PointsManager : MonoBehaviour
     public int sunlightSpendAmount;
     public int waterSpendAmount;
     int plantAmount;
-    int recusrionLevel;
+    public int recusrionLevel;
     public float waterAmount;
     public float sunlightAmount;
     public int priceSunlight;
@@ -65,7 +65,7 @@ public class PointsManager : MonoBehaviour
     void SunlightCalc()
     {
         // Calculate the sunlight per second
-        ambientSunlight += 0.0015f * 2 * Time.deltaTime;
+        ambientSunlight += 0.0015f * .5f * Time.deltaTime;
         sunlightAmount += ambientSunlight;
         sunlightAmountText.text = Mathf.RoundToInt(sunlightAmount).ToString();
     }
@@ -120,24 +120,13 @@ public class PointsManager : MonoBehaviour
 
     public void PayForTree()
     {
-        switch (recusrionLevel)
+        recusrionLevel = numOfPlantsInScene.Length;
+        priceSunlight = 60 * recusrionLevel;
+        priceWater = 15 * recusrionLevel;
+        if (sunlightAmount > priceSunlight && waterAmount > priceWater)
         {
-            case 1:
-                priceSunlight += 30;
-                priceWater += 15;
-                break;
-            case 2:
-                priceSunlight += 60;
-                priceWater += 30;
-                break;
-            case 3:
-                priceSunlight += 120;
-                priceWater += 60;
-                break;
-            case 4:
-                priceSunlight += 240;
-                priceWater += 120;
-                break;
+            sunlightAmount -= priceSunlight;
+            waterAmount -= priceWater;
         }
     }
 }
