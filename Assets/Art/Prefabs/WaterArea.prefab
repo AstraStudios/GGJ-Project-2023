@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 3391718638218788068}
   - component: {fileID: 6741044423955044385}
   - component: {fileID: 2273143720977718789}
-  - component: {fileID: 8064462067052410385}
   - component: {fileID: 2525112372505875272}
   m_Layer: 0
   m_Name: WaterArea
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,20 +102,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0000001, y: 2.0000002}
   m_Direction: 1
---- !u!114 &8064462067052410385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5437783963917907060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f689a68da7b7145b1947210558797121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterFromAreas: 0
-  pointsManagerScriptObject: {fileID: 4232342111133498517, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
 --- !u!50 &2525112372505875272
 Rigidbody2D:
   serializedVersion: 4

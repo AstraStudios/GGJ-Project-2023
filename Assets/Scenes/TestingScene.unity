@@ -1514,6 +1514,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1405656103}
     - target: {fileID: 4232342111133498513, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
+      propertyPath: waterFromHoles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232342111133498513, guid: 7abb016046adb4b348ea9f57e4ca71ea, type: 3}
       propertyPath: plantAmountText
       value: 
       objectReference: {fileID: 1741577754}
